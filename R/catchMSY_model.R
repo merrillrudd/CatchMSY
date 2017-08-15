@@ -158,10 +158,11 @@ catchMSYModel <- function(sID,nlSearch=FALSE,selex=FALSE)
 			# check bounds for ft.
 			if( max(ft,na.rm=TRUE) > 5.0 
 			   || any(is.infinite(ft)) 
-			   || min(ft,na.rm=TRUE) < 0 ) { code <- 5}
+			   || min(ft,na.rm=TRUE) < 0 
+			   || all(is.na(ft))) { code <- 5}
 
 			# check estimates of steepness
-			if( reck <= 1.0 ) { code <- 6 }	
+			if(is.na(reck)==FALSE) if( reck <= 1.0 ) { code <- 6 }	
 		}
 
 		#----------------------------------------------#
